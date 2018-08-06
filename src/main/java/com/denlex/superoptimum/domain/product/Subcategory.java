@@ -2,11 +2,9 @@ package com.denlex.superoptimum.domain.product;
 
 import com.denlex.superoptimum.domain.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Shishkov A.V. on 07.08.18.
@@ -19,8 +17,8 @@ public class Subcategory extends BaseEntity {
 	@ManyToOne
 	private Category category;
 
-	@OneToMany
-	private HashSet<Product> products = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "subcategory")
+	private Set<Product> products = new HashSet<>();
 
 	public Subcategory() {
 	}
@@ -46,11 +44,11 @@ public class Subcategory extends BaseEntity {
 		this.category = category;
 	}
 
-	public HashSet<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(HashSet<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 }

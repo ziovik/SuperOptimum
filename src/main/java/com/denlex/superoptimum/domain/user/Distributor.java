@@ -2,9 +2,10 @@ package com.denlex.superoptimum.domain.user;
 
 import com.denlex.superoptimum.domain.product.Store;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,6 @@ public class Distributor extends User {
 	@Column
 	private String companyName;
 
-	@OneToOne
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distributor", orphanRemoval = true)
 	private Set<Store> stores = new HashSet<>();
 }
