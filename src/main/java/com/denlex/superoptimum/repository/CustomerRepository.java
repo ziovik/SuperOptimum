@@ -1,6 +1,6 @@
 package com.denlex.superoptimum.repository;
 
-import com.denlex.superoptimum.domain.Customer;
+import com.denlex.superoptimum.domain.user.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
