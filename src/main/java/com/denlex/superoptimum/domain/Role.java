@@ -1,9 +1,6 @@
 package com.denlex.superoptimum.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +13,7 @@ public class Role extends BaseEntity {
 	@Column
 	String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "role", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "role", orphanRemoval = true)
 	private Set<Credentials> credentials = new HashSet<>();
 
 	public Role() {

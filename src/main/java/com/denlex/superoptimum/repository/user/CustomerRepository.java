@@ -1,4 +1,4 @@
-package com.denlex.superoptimum.repository;
+package com.denlex.superoptimum.repository.user;
 
 import com.denlex.superoptimum.domain.user.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
