@@ -2,7 +2,6 @@ package com.denlex.superoptimum.domain.user;
 
 import com.denlex.superoptimum.domain.BaseEntity;
 import com.denlex.superoptimum.domain.Credentials;
-import com.denlex.superoptimum.domain.location.Address;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -19,9 +18,6 @@ public abstract class User extends BaseEntity {
 	@OneToOne
 	private Contact contact;
 
-	@OneToOne
-	private Address address;
-
 	@Column
 	private String orgn;
 
@@ -31,10 +27,9 @@ public abstract class User extends BaseEntity {
 	public User() {
 	}
 
-	public User(Credentials credentials, Contact contact, Address address, String orgn, String inn) {
+	public User(Credentials credentials, Contact contact, String orgn, String inn) {
 		this.credentials = credentials;
 		this.contact = contact;
-		this.address = address;
 		this.orgn = orgn;
 		this.inn = inn;
 	}
@@ -53,14 +48,6 @@ public abstract class User extends BaseEntity {
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getOrgn() {
