@@ -1,7 +1,6 @@
 package com.denlex.superoptimum.service.user;
 
 import com.denlex.superoptimum.domain.Credentials;
-
 import java.util.List;
 
 /**

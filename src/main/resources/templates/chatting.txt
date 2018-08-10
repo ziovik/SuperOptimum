@@ -1,0 +1,226 @@
+u have confuse me .i will see d mistakes dont worry
+select table you want and press
+
+all i did is wrong
+does it work right?
+its show me sub category of id 1
+
+but i dont know how to know if im correct or not
+so, I suppose you needed to have products from the same region as customer
+yes
+so?
+check if its correct
+your sql?
+no from table if its correct
+i don't get it... check result of your sql?
+i want to know from the tables if its correct
+how do i know if its corretct
+oh man.. I said twise should I check result of your sql.. you are telling me about table..
+I need to check result of your sql and data from table, right?
+yes
+if ohits thesame region n store ofdist
+hmmmmmm)))
+looks good man, but let me check it))
+Alex in region (id = 3)
+Distributors with id = 2 and id = 3 are have their stores in the same region where alex is
+These products can see Alex, I think
+yes
+so?
+so its correct right?
+I can see only 2 of them
+i said in suncat 1
+aaa
+let's check
+yeap! it's right
+u see i learn fast .but now can i make example if its not in the same region so that no product will show .
+so lets fill product table
+do you wanna see product from another region, not as alex is from?
+i know how that is done.i mean i dont wanna see product where alex is from.make an example
+I don't get it... I am saying what you want, but you sau, enother... I don't und u
+u see our out put is 2 right cos alex is in the region where the distributor has stor right?
+yes
+ now let make and example where alex is not in the region where the distributor has store
+ put alex in another region
+ or product in diff dist_id
+it's silly, if you put alex in another region, you need to correct only one value)
+it's better)
+ok let me see
+man, you don't remember, thar that distr were from 2 and 3?????????
+oh dear,
+what do you mean?
+mean?
+why did you remove it?
+its name not product name
+man, are you silly?
+p is product?
+yes
+so p.name is product_name!
+you are still confusing all
+sub_category has name field!
+don't be silly, opls
+it's right
+do you know why?
+cos alex is in diff region?
+Alex is from Kursk, right?
+yes
+so lets see where distr have their stores
+all three dists have their stores in kursk
+und?
+wait
+yes
+so we don't need to join....wait..thinking
+wait))) let me think)
+aaaaa
+everything is right!!! alex is form 3 region!!!!
+und?
+no i changed it to 1
+are you kiddding?
+u changed it back
+what are you doing?
+so?
+what did u do
+hahahaha))))
+don't you und?))
+oh man... you needed to get products from another region, not where custer is
+hahahah.i didnt ask for that but its ok.
+i dont wanna get product.i want a null table cos he is not from that region.but u did the opposite.wha
+t u did is not needed for my site.c
+os i dont need to show this.i need to show empty cos he is not from there
+I showed you twice null table! but you din't stop me..wait
+I did it twiscees
+yseos
+so?
+why do u first select from store
+cosa I switch on my brain!
+I know, that I need prouduct ... but product doesn't have region_id
+but store has it
+so I need to select from store
+then I need join it to distr, cose store has no idea about products it stores
+so product has dist_id
+it's easy
+wait let me ask few question. ok
+ok
+so if i want to select product s
+i must g to the store first and see if the region where customer is in the store right?
+if you need to select product and watch it region, so you need to go to store at first
+and do what?
+see if the region where customer is in the storee>?
+no of course
+don't mix it, pls
+you need to get products right?
+yes
+you need to know its' region right?
+yes
+so you need to go to store, cose store has region_id...
+so you join store and distr, cos product doens' have store_id
+product has distr_id, and store has it, so you need to join 3 tables: store, distr, product
+so you selected aaaaalllll products..
+then
+you have a searching criteria, it's a region
+so you have to search customer who live in the same (or not the same) region, so you need to join that 3 tables
+with customer table, cosa you have already had region_id in store table, and you have region_id in customer table
+und?
+mmmmm i already understand before but r confusing me again.
+why?
+wait.first i go to store right
+why do you go there?
+cos i need to know which dist id the product has
+no!!!
+man, you are not understatnig me
+the main goal is getting products, right?
+you have main goal of getting prouds
+so you need to select it from products table right?
+yes
+but you have one very important criteria.. this is a region, right?
+yes
+do you have region in products table?
+no
+wher do you hacve region_id witch connected to products?
+store
+great!!!
+so you
+select * from store
+then... you have region_id and distr_id there, right?
+yes
+but you need to get products, right?
+yes
+how can you connect to store from products?
+yes
+not fucken yes! i said HOW???
+dist id
+so you are joining store + distributor + product
+right?
+yes
+ok, what do you have after this conjuction?
+blin
+thnk
+ok, let me explain you if you can't und this
+if you join all these three tables (sotre + distributor + product), so you have
+products which have distributors in shops which are located in regions
+right?
+yes
+I have PRODUCTS!!!
+it was my MAIN GOAL, don't yund?
+yesi und
+excellent!
+so I have products with region, right/
+it is agter joingin, don't you und?
+yes i have region
+you have PRODUCTS with info about its region
+not region!!! MAIN GOAL IS PRODUCTS!!!!!!
+und?
+yes
+oh dear.....
+so, you have prod and region ... but you need also to constraint it, right?
+yes
+criteria is customer region, right?
+yes
+excellent
+so customer has region in it's table?
+yes
+so just join customer with (store + distributor + product))
+can you?
+yes
+so, is it hard?
+not really
+thats why I started from store, cose store has a region
+you can start from products
+thereis no matter
+good
+thats what i wanna hear
+but!
+It's better to me start from store, cosa it has region_id
+und?
+ok
+i get
+ok let me continue thx
+bye
+have you compiled the project?
+i dont und ur english
+it's present perfect tense
+did you compile it?
+u mean in site or here only?
+of course here! how could it be in anoter way?
+listen see what i did
+its ok
+but now wanna run in php
+listen is it ok to do like this
+type Ctrl + Alt + L on the seleciton, ok?
+so, it give you tip about probable error, so you may fuck him off
+so ,you can use "as product_id" if you like
+ok let me see
+wow what is wrong with style
+are you sure echo will und style?
+ok let me remove it.im very sure echo can be as he wants
+give me 5 mins
+man, do you thnk you know PHP?
+yes off course
+not well but i know
+phpstorm doesn't think so
+let me make one important thng
+give me 10 mins, ok?
+ok
+what is wrong with your connection? it is so slow
+so, we are trying to make your code work , yeap?
+yes
+r u here

@@ -41,7 +41,6 @@ public class AppStartupRunner implements ApplicationRunner {
 	@Autowired
 	private ContactService contactService;
 
-	@Autowired
 	private CustomerService customerService;
 
 	@Autowired

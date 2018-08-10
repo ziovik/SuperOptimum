@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by Shishkov A.V. on 07.08.18.
  */
+
 @Service
 @Transactional
 public class CityServiceImpl implements CityService {
