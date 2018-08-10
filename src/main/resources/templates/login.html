@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/style_loading.css" th:href="@{/css/style_loading.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<form class="form-group" method="post" th:action="@{/main}">
+	<div class="form-group">
+		<label>Логин:</label>
+		<input type="text">
+	</div>
+</form>
+</body>
+</html>
