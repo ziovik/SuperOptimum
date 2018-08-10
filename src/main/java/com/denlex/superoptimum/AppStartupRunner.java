@@ -46,7 +46,7 @@ public class AppStartupRunner implements ApplicationRunner {
 		fillLocations();
 		fillProducts();
 		fillRoles();
-		fillCustomers();
+//		fillCustomers();
 	}
 
 	private void fillLocations() {
