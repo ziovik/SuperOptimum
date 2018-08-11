@@ -43,6 +43,10 @@ public class AppStartupRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		initAll();
+	}
+
+	private void initAll() {
 		fillLocations();
 		fillProducts();
 		fillRoles();
@@ -98,21 +102,24 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillRoles() {
-		Role admin = new Role("admin");
-		Role user = new Role("user");
+		Role admin = new Role("ROLE_ADMIN");
+		Role user = new Role("ROLE_USER");
 		roleService.save(admin);
 		roleService.save(user);
 	}
 
 	private void fillCustomers() {
-		Role user = new Role("user");
-		Role admin = new Role("admin");
+		Role user = roleService.findByName("ROLE_USER");
 
-		Credentials alexCredentials = credentialsService.save(new Credentials("alex", "alex"));
+		Credentials alexCredentials = new Credentials("alex", "alex");
+		user.getRoles().add(alexCredentials);
 		alexCredentials.getRoles().add(user);
+		alexCredentials = credentialsService.save(alexCredentials);
 
-		Credentials danielCredentials = credentialsService.save(new Credentials("daniel", "daniel"));
+		Credentials danielCredentials = new Credentials("daniel", "daniel");
+		user.getRoles().add(danielCredentials);
 		danielCredentials.getRoles().add(user);
+		danielCredentials = credentialsService.save(danielCredentials);
 
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
 		customerService.save(alex);

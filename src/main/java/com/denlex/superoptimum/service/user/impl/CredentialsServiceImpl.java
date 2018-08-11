@@ -35,6 +35,7 @@ public class CredentialsServiceImpl implements CredentialsService {
 	@Override
 	public Credentials save(Credentials credentials) {
 		credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
+//		credentials.setPassword(credentials.getPassword());
 		return credentialsRepository.save(credentials);
 	}
 
