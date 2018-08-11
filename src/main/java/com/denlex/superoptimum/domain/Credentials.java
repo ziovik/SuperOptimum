@@ -1,38 +1,40 @@
 package com.denlex.superoptimum.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Shishkov A.V. on 06.08.18.
  */
 @Entity
 public class Credentials extends BaseEntity {
-	@Column
-	private String login;
+	@Column(nullable = false, unique = true)
+	private String username;
 
-	@Column
 	private String password;
 
-	@ManyToOne
-	private Role role;
+	@Transient
+	private String passwordConfirm;
+
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
 	public Credentials() {
 	}
 
-	public Credentials(String login, String password, Role role) {
-		this.login = login;
+	public Credentials(String username, String password) {
+		this.username = username;
 		this.password = password;
-		this.role = role;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -43,11 +45,19 @@ public class Credentials extends BaseEntity {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }

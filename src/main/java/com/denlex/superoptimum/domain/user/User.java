@@ -39,14 +39,6 @@ public abstract class User extends BaseEntity {
 		this.inn = inn;
 	}
 
-	public Credentials getCredentials() {
-		return credentials;
-	}
-
-	public void setCredentials(Credentials credentials) {
-		this.credentials = credentials;
-	}
-
 	public Contact getContact() {
 		return contact;
 	}
@@ -77,5 +69,13 @@ public abstract class User extends BaseEntity {
 
 	public void setInn(String inn) {
 		this.inn = inn;
+	}
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 }

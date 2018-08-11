@@ -46,7 +46,7 @@ public class AppStartupRunner implements ApplicationRunner {
 		fillLocations();
 		fillProducts();
 		fillRoles();
-//		fillCustomers();
+		fillCustomers();
 	}
 
 	private void fillLocations() {
@@ -105,16 +105,19 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillCustomers() {
-		Role user = roleService.findByName("user");
+		Role user = new Role("user");
+		Role admin = new Role("admin");
 
-		Credentials alexCredentials = new Credentials("alex", "alex", user);
+		Credentials alexCredentials = credentialsService.save(new Credentials("alex", "alex"));
+		alexCredentials.getRoles().add(user);
+
+		Credentials danielCredentials = credentialsService.save(new Credentials("daniel", "daniel"));
+		danielCredentials.getRoles().add(user);
+
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
-		user.getCredentials().add(alexCredentials);
 		customerService.save(alex);
 
-		Credentials danielCredentials = new Credentials("daniel", "daniel", user);
 		Customer daniel = new Customer("Daniel", danielCredentials, null, null, null, null);
-		user.getCredentials().add(danielCredentials);
 		customerService.save(daniel);
 	}
 }
