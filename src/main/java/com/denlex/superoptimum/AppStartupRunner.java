@@ -111,12 +111,33 @@ public class AppStartupRunner implements ApplicationRunner {
 				new Product("Ласьон для лица", null, null, 1, 5, LocalDate.now(), null));
 
 		cosmetology.addSubcategory(injection);
-		cosmetology.addSubcategory(new Subcategory("Аппаратная"));
-		cosmetology.addSubcategory(new Subcategory("Уход за волосами"));
+
+		Subcategory app = new Subcategory("Аппаратная");
+		app.addProduct(
+				new Product("instrument for cosmetics", Otesaly, good, 5, 100, LocalDate.now(), null));
+		app.addProduct(
+				new Product("cutting tools", null, null, 1, 5, LocalDate.now(), null));
+
+
+		cosmetology.addSubcategory(app);
+
+		Subcategory hair = new Subcategory("Уход за волосами");
+
+		hair.addProduct(
+				new Product("hair cream", null, null, 1, 5, LocalDate.now(), null));
+		cosmetology.addSubcategory(hair);
+
 		categoryService.save(cosmetology);
 
 		Category depilation = new Category("Депиляция");
-		depilation.addSubcategory(new Subcategory("Депиряций"));
+
+		Subcategory dep = new Subcategory("Депиряций");
+		dep.addProduct(
+				new Product("Skin removal", flash, null, 1, 10, LocalDate.now(), null));
+		dep.addProduct(
+				new Product("cosco things", null, null, 1, 5, LocalDate.now(), null));
+
+		depilation.addSubcategory(dep);
 		categoryService.save(depilation);
 
 		Category solar = new Category("Солярий");
@@ -164,7 +185,16 @@ public class AppStartupRunner implements ApplicationRunner {
 		categoryService.save(tattooAndPiercing);
 
 		Category staff = new Category("Расходные материалы и одноразовые принадлежности");
-		staff.addSubcategory(new Subcategory("Одноразовые простыни,полотенца, салфетки"));
+		Subcategory cleaner = new Subcategory("Одноразовые простыни,полотенца, салфетки");
+		cleaner.addProduct(
+				new Product("полотенца", null, null, 1, 10, LocalDate.now(), null));
+		cleaner.addProduct(
+				new Product(" простыни", null, null, 1, 10, LocalDate.now(), null));
+		cleaner.addProduct(
+				new Product("салфетки", null, null, 1, 10, LocalDate.now(), null));
+		cleaner.addProduct(
+				new Product("tissues", null, null, 1, 10, LocalDate.now(), null));
+		staff.addSubcategory(cleaner);
 		staff.addSubcategory(new Subcategory("Одноразовая одежда и перчатки"));
 		staff.addSubcategory(new Subcategory("Кисти, шпатели, баночки"));
 		staff.addSubcategory(new Subcategory("Ватные диски, спонжи"));
