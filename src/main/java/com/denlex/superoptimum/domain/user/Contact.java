@@ -26,4 +26,34 @@ public class Contact extends BaseEntity {
 
 	public Contact() {
 	}
+
+	public Contact(Address address, String phoneNumber, @Email String email) {
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

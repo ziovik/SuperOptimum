@@ -14,7 +14,7 @@ public class Role extends BaseEntity {
 	private String name;
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-	private Set<Credentials> roles = new HashSet<>();
+	private Set<Credentials> credentials = new HashSet<>();
 
 	public Role() {
 	}
@@ -31,11 +31,15 @@ public class Role extends BaseEntity {
 		this.name = name;
 	}
 
-	public Set<Credentials> getRoles() {
-		return roles;
+	public Set<Credentials> getCredentials() {
+		return credentials;
 	}
 
-	public void setRoles(Set<Credentials> roles) {
-		this.roles = roles;
+	public void setCredentials(Set<Credentials> credentials) {
+		this.credentials = credentials;
+	}
+
+	public void addCredentials(Credentials credentials) {
+		this.getCredentials().add(credentials);
 	}
 }

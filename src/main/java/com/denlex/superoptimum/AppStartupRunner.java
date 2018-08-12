@@ -2,18 +2,21 @@ package com.denlex.superoptimum;
 
 import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.location.City;
 import com.denlex.superoptimum.domain.location.Country;
 import com.denlex.superoptimum.domain.location.Region;
 import com.denlex.superoptimum.domain.product.Category;
 import com.denlex.superoptimum.domain.product.Product;
 import com.denlex.superoptimum.domain.product.Subcategory;
+import com.denlex.superoptimum.domain.user.Contact;
 import com.denlex.superoptimum.domain.user.Customer;
+import com.denlex.superoptimum.domain.user.Distributor;
+import com.denlex.superoptimum.service.location.AddressService;
+import com.denlex.superoptimum.service.location.CityService;
 import com.denlex.superoptimum.service.location.CountryService;
 import com.denlex.superoptimum.service.product.CategoryService;
-import com.denlex.superoptimum.service.user.CredentialsService;
-import com.denlex.superoptimum.service.user.CustomerService;
-import com.denlex.superoptimum.service.user.RoleService;
+import com.denlex.superoptimum.service.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -36,10 +39,22 @@ public class AppStartupRunner implements ApplicationRunner {
 	private CustomerService customerService;
 
 	@Autowired
+	private DistributorService distributorService;
+
+	@Autowired
 	private CountryService countryService;
 
 	@Autowired
+	private CityService cityService;
+
+	@Autowired
+	private AddressService addressService;
+
+	@Autowired
 	private CategoryService categoryService;
+
+	@Autowired
+	private ContactService contactService;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -51,6 +66,7 @@ public class AppStartupRunner implements ApplicationRunner {
 		fillProducts();
 		fillRoles();
 		fillCustomers();
+		fillDistributors();
 	}
 
 	private void fillLocations() {
@@ -173,13 +189,13 @@ public class AppStartupRunner implements ApplicationRunner {
 		Role user = roleService.findByName("ROLE_USER");
 
 		Credentials alexCredentials = new Credentials("alex", "alex");
-		user.getRoles().add(alexCredentials);
-		alexCredentials.getRoles().add(user);
+		user.addCredentials(alexCredentials);
+		alexCredentials.addRole(user);
 		alexCredentials = credentialsService.save(alexCredentials);
 
 		Credentials danielCredentials = new Credentials("daniel", "daniel");
-		user.getRoles().add(danielCredentials);
-		danielCredentials.getRoles().add(user);
+		user.addCredentials(danielCredentials);
+		danielCredentials.addRole(user);
 		danielCredentials = credentialsService.save(danielCredentials);
 
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
@@ -187,5 +203,20 @@ public class AppStartupRunner implements ApplicationRunner {
 
 		Customer daniel = new Customer("Daniel", danielCredentials, null, null, null, null);
 		customerService.save(daniel);
+	}
+
+	private void fillDistributors() {
+		Role user = roleService.findByName("ROLE_USER");
+		Credentials appleCredentials = new Credentials("apple", "apple");
+		user.addCredentials(appleCredentials);
+		appleCredentials = credentialsService.save(appleCredentials);
+
+		City kursk = cityService.findByName("Курск");
+		Address appleAddress = addressService.save(new Address(kursk, "Ленина", "10", null, "305045"));
+
+		Distributor apple = new Distributor(appleCredentials,
+				contactService.save(new Contact(appleAddress, "45-54-33", "kursk@apple.com")),
+				appleAddress, null, null, "Apple Co");
+		distributorService.save(apple);
 	}
 }

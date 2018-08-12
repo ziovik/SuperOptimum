@@ -4,10 +4,12 @@ import com.denlex.superoptimum.domain.location.City;
 import com.denlex.superoptimum.repository.location.CityRepository;
 import com.denlex.superoptimum.service.location.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Shishkov A.V. on 07.08.18.
  */
+@Service
 public class CityServiceImpl implements CityService {
 	@Autowired
 	private CityRepository cityRepository;
@@ -15,5 +17,10 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City save(City city) {
 		return cityRepository.save(city);
+	}
+
+	@Override
+	public City findByName(String name) {
+		return cityRepository.findByName(name);
 	}
 }

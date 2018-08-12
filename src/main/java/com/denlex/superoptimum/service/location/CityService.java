@@ -7,4 +7,6 @@ import com.denlex.superoptimum.domain.location.City;
  */
 public interface CityService {
 	City save(City city);
+
+	City findByName(String name);
 }

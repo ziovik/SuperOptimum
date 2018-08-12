@@ -23,7 +23,7 @@ public class Region extends BaseEntity {
 	@JsonBackReference
 	private Country country;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "region", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "region", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<City> cities = new HashSet<>();
 
 	public Region() {

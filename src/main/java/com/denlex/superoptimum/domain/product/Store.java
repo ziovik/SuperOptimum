@@ -18,7 +18,7 @@ public class Store extends BaseEntity {
 	private City city;
 
 	@OneToMany
-	private Set<Product> products = new HashSet<Product>();
+	private Set<ProductItem> products = new HashSet<>();
 
 	@ManyToOne
 	private Distributor distributor;
@@ -31,9 +31,37 @@ public class Store extends BaseEntity {
 		this.distributor = distributor;
 	}
 
-	public Store(City city, Set<Product> products, Distributor distributor) {
+	public Store(City city, Set<ProductItem> products, Distributor distributor) {
 		this.city = city;
 		this.products = products;
 		this.distributor = distributor;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Set<ProductItem> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<ProductItem> products) {
+		this.products = products;
+	}
+
+	public Distributor getDistributor() {
+		return distributor;
+	}
+
+	public void setDistributor(Distributor distributor) {
+		this.distributor = distributor;
+	}
+
+	public void addProduct(Product product) {
+
 	}
 }
