@@ -14,30 +14,39 @@
 			<div class="category-nav">
 				<span class="category-header">Категории <i class="fa fa-list"></i></span>
 				<ul class="category-list">
-					<li class="dropdown side-dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="cosm">Косметология
-							<i class="fa fa-angle-right"></i></a>
+					<li th:each="category : ${categories}" class="dropdown side-dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="cosm">
+							<span th:text="${category.name}"></span>
+							<i class="fa fa-angle-right"></i>
+						</a>
 						<div class="custom-menu">
 							<div class="row">
 								<div class="col-md-4">
 									<ul class="list-links">
-										<li><h3 class="list-links-title"><a href="" name="allcosm">Косметология</a></h3>
+										<li>
+											<a href="">
+												<span th:text="${category.name}"></span>
+											</a>
 										</li>
-
-
+										<li th:each="subcategory : ${category.subcategories}" >
+											<h3 class="list-links-title">
+												<a href="" name="allcosm">
+													<span th:text="${subcategory.name}"></span>
+												</a>
+											</h3>
+										</li>
 										<li style="width:300px;"><a href=""></a></li>
-										";
-
 									</ul>
 									<hr class="hidden-md hidden-lg">
 								</div>
-
-
 							</div>
+						</div>
 					</li>
-
-					<li><a href="all_products.html">Все продукты</a></li>
+					<li>
+						<a href="../all_products.html">Все продукты</a>
+					</li>
 				</ul>
+
 			</div>
 			<!-- menu nav -->
 			<div class="menu-nav">

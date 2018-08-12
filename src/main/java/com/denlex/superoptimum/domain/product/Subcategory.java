@@ -23,8 +23,12 @@ public class Subcategory extends BaseEntity {
 	public Subcategory() {
 	}
 
-	public Subcategory(String name, Category category) {
+	public Subcategory(String name) {
 		this.name = name;
+	}
+
+	public Subcategory(String name, Category category) {
+		this(name);
 		this.category = category;
 	}
 
@@ -50,5 +54,10 @@ public class Subcategory extends BaseEntity {
 
 	public void setProducts(Set<Product> products) {
 		this.products = products;
+	}
+
+	public void addProduct(Product product) {
+		product.setSubcategory(this);
+		this.getProducts().add(product);
 	}
 }

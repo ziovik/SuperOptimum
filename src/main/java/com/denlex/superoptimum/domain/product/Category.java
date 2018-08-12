@@ -47,4 +47,14 @@ public class Category extends BaseEntity {
 	public void setSubcategories(Set<Subcategory> subcategories) {
 		this.subcategories = subcategories;
 	}
+
+	public void addSubcategory(Subcategory subcategory) {
+		subcategory.setCategory(this);
+		this.getSubcategories().add(subcategory);
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

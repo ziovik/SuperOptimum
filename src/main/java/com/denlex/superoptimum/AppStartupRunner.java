@@ -87,18 +87,79 @@ public class AppStartupRunner implements ApplicationRunner {
 
 	private void fillProducts() {
 		Category cosmetology = new Category("Косметика");
-		Subcategory injection = new Subcategory("Инъекционная", cosmetology);
-		Subcategory apparatnaya = new Subcategory("Аппаратная", cosmetology);
-		Subcategory haircare = new Subcategory("Уход за волосами", cosmetology);
-		Product shavingCream = new Product("Крем для бритья", injection, null, null, 1, 10, LocalDate.now(), null);
-		Product faceLasion = new Product("Ласьон для лица", injection, null, null, 1, 5, LocalDate.now(), null);
-		injection.getProducts().add(shavingCream);
-		injection.getProducts().add(faceLasion);
-		cosmetology.getSubcategories().add(injection);
-		cosmetology.getSubcategories().add(apparatnaya);
-		cosmetology.getSubcategories().add(haircare);
 
+		Subcategory injection = new Subcategory("Инъекционная");
+		injection.addProduct(
+				new Product("Крем для бритья", null, null, 1, 10, LocalDate.now(), null));
+		injection.addProduct(
+				new Product("Ласьон для лица", null, null, 1, 5, LocalDate.now(), null));
+
+		cosmetology.addSubcategory(injection);
+		cosmetology.addSubcategory(new Subcategory("Аппаратная"));
+		cosmetology.addSubcategory(new Subcategory("Уход за волосами"));
 		categoryService.save(cosmetology);
+
+		Category depilation = new Category("Депиляция");
+		depilation.addSubcategory(new Subcategory("Депиряций"));
+		categoryService.save(depilation);
+
+		Category solar = new Category("Солярий");
+		solar.addSubcategory(new Subcategory("Солярий"));
+		categoryService.save(solar);
+
+		Category massage = new Category("Массаж");
+		massage.addSubcategory(new Subcategory("Массаж"));
+		categoryService.save(massage);
+
+		Category barbershop = new Category("Парикмахерская продукция");
+		barbershop.addSubcategory(new Subcategory("Стайлинг"));
+		barbershop.addSubcategory(new Subcategory("Наращивание волос"));
+		barbershop.addSubcategory(new Subcategory("Инструменты, аксесуары и расходные материалы"));
+		categoryService.save(barbershop);
+
+		Category nails = new Category("Ногтевой сервис");
+		nails.addSubcategory(new Subcategory("Моделирование"));
+		nails.addSubcategory(new Subcategory("Уход за ногтями и кожей рук"));
+		nails.addSubcategory(new Subcategory("Декор ногтей"));
+		nails.addSubcategory(new Subcategory("Инструменты и техника"));
+		nails.addSubcategory(new Subcategory("Расходные материалы"));
+		categoryService.save(nails);
+
+		Category eyelashbrow = new Category("Ресницы и брови");
+		eyelashbrow.addSubcategory(new Subcategory("Оформление бровей"));
+		eyelashbrow.addSubcategory(new Subcategory("Наращивание ресниц"));
+		eyelashbrow.addSubcategory(new Subcategory("Ламинирование ресниц"));
+		eyelashbrow.addSubcategory(new Subcategory("Микропигментирование"));
+		eyelashbrow.addSubcategory(new Subcategory("Инструменты и расходные материалы"));
+		categoryService.save(eyelashbrow);
+
+		Category makeup = new Category("Визаж");
+		makeup.addSubcategory(new Subcategory("Макияж лица"));
+		makeup.addSubcategory(new Subcategory("Макияж глаз"));
+		makeup.addSubcategory(new Subcategory("Макияж губ"));
+		makeup.addSubcategory(new Subcategory("Кисти для Макияжа"));
+		makeup.addSubcategory(new Subcategory("Кейсы и палитра"));
+		makeup.addSubcategory(new Subcategory("Инструменты"));
+		categoryService.save(makeup);
+
+		Category tattooAndPiercing = new Category("Татуаж и пирсинг");
+		tattooAndPiercing.addSubcategory(new Subcategory("Татуаж"));
+		tattooAndPiercing.addSubcategory(new Subcategory("Пирсинг"));
+		categoryService.save(tattooAndPiercing);
+
+		Category staff = new Category("Расходные материалы и одноразовые принадлежности");
+		staff.addSubcategory(new Subcategory("Одноразовые простыни,полотенца, салфетки"));
+		staff.addSubcategory(new Subcategory("Одноразовая одежда и перчатки"));
+		staff.addSubcategory(new Subcategory("Кисти, шпатели, баночки"));
+		staff.addSubcategory(new Subcategory("Ватные диски, спонжи"));
+		staff.addSubcategory(new Subcategory("Другое"));
+		categoryService.save(staff);
+
+		Category sterilization = new Category("Стерилизация и дезинфекция");
+		sterilization.addSubcategory(new Subcategory("Средства для обработки кожи"));
+		sterilization.addSubcategory(new Subcategory("Средства для обработки инструментов и поверхностей"));
+		sterilization.addSubcategory(new Subcategory("Стерилизаторы, принадлежности и расходники"));
+		categoryService.save(sterilization);
 	}
 
 	private void fillRoles() {
