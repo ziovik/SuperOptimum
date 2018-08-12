@@ -43,10 +43,14 @@ public class AppStartupRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		initAll();
+	}
+
+	private void initAll() {
 		fillLocations();
 		fillProducts();
 		fillRoles();
-//		fillCustomers();
+		fillCustomers();
 	}
 
 	private void fillLocations() {
@@ -98,23 +102,29 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillRoles() {
-		Role admin = new Role("admin");
-		Role user = new Role("user");
+		Role admin = new Role("ROLE_ADMIN");
+		Role user = new Role("ROLE_USER");
 		roleService.save(admin);
 		roleService.save(user);
 	}
 
 	private void fillCustomers() {
-		Role user = roleService.findByName("user");
+		Role user = roleService.findByName("ROLE_USER");
 
-		Credentials alexCredentials = new Credentials("alex", "alex", user);
+		Credentials alexCredentials = new Credentials("alex", "alex");
+		user.getRoles().add(alexCredentials);
+		alexCredentials.getRoles().add(user);
+		alexCredentials = credentialsService.save(alexCredentials);
+
+		Credentials danielCredentials = new Credentials("daniel", "daniel");
+		user.getRoles().add(danielCredentials);
+		danielCredentials.getRoles().add(user);
+		danielCredentials = credentialsService.save(danielCredentials);
+
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
-		user.getCredentials().add(alexCredentials);
 		customerService.save(alex);
 
-		Credentials danielCredentials = new Credentials("daniel", "daniel", user);
 		Customer daniel = new Customer("Daniel", danielCredentials, null, null, null, null);
-		user.getCredentials().add(danielCredentials);
 		customerService.save(daniel);
 	}
 }

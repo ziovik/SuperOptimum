@@ -1,10 +1,11 @@
 package com.denlex.superoptimum.controller;
 
+import com.denlex.superoptimum.domain.user.User;
 import com.denlex.superoptimum.dto.UserKind;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -14,15 +15,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "")
 public class WelcomeController {
 
-	@GetMapping(value="/login{user_kind}")
-	public String showLoginPage(@PathVariable("user_kind") String userKind, Model model) {
-		UserKind user;
-		if (userKind.equalsIgnoreCase("customer")) {
-			user = UserKind.CUSTOMER;
-		} else {
-			user = UserKind.DISTRIBUTOR;
-		}
+	/*@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("userKind", UserKind.DISTRIBUTOR);
+	}*/
+
+	@GetMapping(path = {"", "/index"})
+	public String showIndexPage(Model model) {
+		User user = null;
 		model.addAttribute("userKind", user);
+		return "index";
+	}
+
+	@GetMapping("/loading_c")
+	public String showWelcomeCustomerPage(Model model) {
+		model.addAttribute("userKind", UserKind.CUSTOMER);
+		return "loading_c";
+	}
+
+	@GetMapping("/loading_d")
+	public String showWelcomeDistributorPage(Model model) {
+		model.addAttribute("userKind", UserKind.DISTRIBUTOR);
+		return "loading_d";
+	}
+
+	@GetMapping("/login")
+	public String showLoginPage() {
 		return "login";
 	}
+
+	@GetMapping("/optimum_beauty")
+	public String showMainPage(@ModelAttribute String userKind) {
+		return "optimum_beauty";
+	}
+
 }
