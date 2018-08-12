@@ -114,7 +114,7 @@ public class AppStartupRunner implements ApplicationRunner {
 
 		Subcategory app = new Subcategory("Аппаратная");
 		app.addProduct(
-				new Product("instrument for cosmetics", Otesaly, good, 5, 100, LocalDate.now(), null));
+				new Product("instrument for cosmetics", "Otesaly", "good", 5, 100, LocalDate.now(), null));
 		app.addProduct(
 				new Product("cutting tools", null, null, 1, 5, LocalDate.now(), null));
 
@@ -133,7 +133,7 @@ public class AppStartupRunner implements ApplicationRunner {
 
 		Subcategory dep = new Subcategory("Депиряций");
 		dep.addProduct(
-				new Product("Skin removal", flash, null, 1, 10, LocalDate.now(), null));
+				new Product("Skin removal", "flash", null, 1, 10, LocalDate.now(), null));
 		dep.addProduct(
 				new Product("cosco things", null, null, 1, 5, LocalDate.now(), null));
 
