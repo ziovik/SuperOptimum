@@ -1,5 +1,6 @@
 package com.denlex.superoptimum.controller;
 
+import com.denlex.superoptimum.domain.user.User;
 import com.denlex.superoptimum.dto.UserKind;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,9 @@ public class WelcomeController {
 	}*/
 
 	@GetMapping(path = {"", "/index"})
-	public String showIndexPage() {
+	public String showIndexPage(Model model) {
+		User user = null;
+		model.addAttribute("userKind", user);
 		return "index";
 	}
 
@@ -41,9 +44,9 @@ public class WelcomeController {
 		return "login";
 	}
 
-	@GetMapping("/main")
+	@GetMapping("/optimum_beauty")
 	public String showMainPage(@ModelAttribute String userKind) {
-		return "main";
+		return "optimum_beauty";
 	}
 
 }

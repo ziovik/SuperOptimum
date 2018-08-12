@@ -22,7 +22,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1, Authentication authentication)
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -30,14 +30,14 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
 			if (authority.getAuthority().equals("ROLE_USER")) {
 				try {
-					redirectStrategy.sendRedirect(arg0, arg1, "/main");
+					redirectStrategy.sendRedirect(request, response, "/optimum_beauty");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (authority.getAuthority().equals("ROLE_ADMIN")) {
 				try {
-					redirectStrategy.sendRedirect(arg0, arg1, "/admin");
+					redirectStrategy.sendRedirect(request, response, "/admin");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

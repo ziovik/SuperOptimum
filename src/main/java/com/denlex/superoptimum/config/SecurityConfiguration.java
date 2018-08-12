@@ -8,9 +8,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Created by Shishkov A.V. on 10.08.18.
@@ -38,16 +40,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 					.antMatchers("/", "/index", "/loading_c", "/loading_d").permitAll()
 					.antMatchers("/css/**", "/js/**", "/font/**", "/img/**").permitAll()
-					.anyRequest().authenticated()
+					.anyRequest()
+					.authenticated()
 				.and()
 					.formLogin().successHandler(authenticationSuccessHandler)
 					.loginPage("/login")
+					.failureUrl("/login?error=true")
 					.permitAll()
 				.and()
 					.logout()
-					.permitAll()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.invalidateHttpSession(true)
+					.logoutSuccessUrl("/index")
 				.and()
-					.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+					.sessionManagement()
+					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+					/*.logoutSuccessHandler((request, response, authentication) -> {
+						response.sendRedirect("/index");
+					})*/;
 	}
 
 	@Autowired
