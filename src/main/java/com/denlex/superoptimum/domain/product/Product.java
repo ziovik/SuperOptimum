@@ -39,15 +39,19 @@ public class Product extends BaseEntity {
 	public Product() {
 	}
 
-	public Product(String name, Subcategory subcategory, String manufacturer, String description, Integer minOrder, Integer maxOrder, LocalDate expiringDate, String keyword) {
+	public Product(String name, String manufacturer, String description, Integer minOrder, Integer maxOrder, LocalDate expiringDate, String keyword) {
 		this.name = name;
-		this.subcategory = subcategory;
 		this.manufacturer = manufacturer;
 		this.description = description;
 		this.minOrder = minOrder;
 		this.maxOrder = maxOrder;
 		this.expiringDate = expiringDate;
 		this.keyword = keyword;
+	}
+
+	public Product(String name, Subcategory subcategory, String manufacturer, String description, Integer minOrder, Integer maxOrder, LocalDate expiringDate, String keyword) {
+		this(name, manufacturer, description, minOrder, maxOrder, expiringDate, keyword);
+		this.subcategory = subcategory;
 	}
 
 	public String getName() {
