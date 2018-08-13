@@ -1,6 +1,7 @@
 package com.denlex.superoptimum.controller;
 
 import com.denlex.superoptimum.domain.product.Category;
+import com.denlex.superoptimum.domain.user.Customer;
 import com.denlex.superoptimum.domain.user.User;
 import com.denlex.superoptimum.dto.UserKind;
 import com.denlex.superoptimum.service.product.CategoryService;
@@ -48,12 +49,14 @@ public class WelcomeController {
 	}
 
 	@GetMapping("/login")
-	public String showLoginPage() {
+	public String showLoginPage(Model model) {
+		User user = new Customer();
+		model.addAttribute("user", user);
 		return "login";
 	}
 
 	@GetMapping("/optimum_beauty")
-	public String showMainPage(@ModelAttribute String userKind, Model model) {
+	public String showMainPage(@ModelAttribute("user") Customer user, Model model) {
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
 		return "optimum_beauty";

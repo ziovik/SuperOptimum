@@ -16,9 +16,9 @@
 	<h2 style="color: white; text-align: center;"></h2>
 	<h1>Вход</h1>
 	<form method="post" th:action="@{/login}">
-		<input type="text" name="username" placeholder="логин..." required="required"/>
+		<input type="text" name="username" placeholder="логин..." required="required" autofocus="autofocus"/>
 		<input type="password" name="password" placeholder="пароль..." required="required"/>
-		<button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Вход</button>
+		<input type="submit" value="Вход" class="btn btn-primary btn-block btn-large"/>
 	</form>
 </div>
 </body>
