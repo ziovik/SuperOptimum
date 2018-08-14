@@ -239,6 +239,7 @@ public class AppStartupRunner implements ApplicationRunner {
 		Role user = roleService.findByName("ROLE_USER");
 		Credentials appleCredentials = new Credentials("apple", "apple");
 		user.addCredentials(appleCredentials);
+		appleCredentials.addRole(user);
 		appleCredentials = credentialsService.save(appleCredentials);
 
 		City kursk = cityService.findByName("Курск");

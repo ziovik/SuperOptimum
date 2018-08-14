@@ -5,6 +5,8 @@ import com.denlex.superoptimum.domain.Role;
 import com.denlex.superoptimum.repository.user.CredentialsRepository;
 import com.denlex.superoptimum.repository.user.RoleRepository;
 import com.denlex.superoptimum.service.user.CredentialsService;
+import com.denlex.superoptimum.service.user.CustomerService;
+import com.denlex.superoptimum.service.user.DistributorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +29,12 @@ public class CredentialsServiceImpl implements CredentialsService {
 	private CredentialsRepository credentialsRepository;
 
 	@Autowired
+	private CustomerService customerService;
+
+	@Autowired
+	private DistributorService distributorService;
+
+	@Autowired
 	private RoleRepository roleRepository;
 
 	@Autowired
@@ -35,13 +43,17 @@ public class CredentialsServiceImpl implements CredentialsService {
 	@Override
 	public Credentials save(Credentials credentials) {
 		credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
-//		credentials.setPassword(credentials.getPassword());
 		return credentialsRepository.save(credentials);
 	}
 
 	@Override
 	public Credentials findByUsername(String username) {
 		return credentialsRepository.findByUsername(username);
+	}
+
+	@Override
+	public Credentials findCustomerByUsername(String username) {
+		return null;
 	}
 
 	@Override

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by Shishkov A.V. on 07.08.18.
  */
 @Repository
-public interface DistributorRepository extends JpaRepository<Distributor, Long> {
+public interface DistributorRepository extends JpaRepository<Distributor, Long>, CustomizedDistributorRepository {
 }

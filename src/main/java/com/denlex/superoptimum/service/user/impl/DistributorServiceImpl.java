@@ -1,5 +1,6 @@
 package com.denlex.superoptimum.service.user.impl;
 
+import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.user.Distributor;
 import com.denlex.superoptimum.repository.user.DistributorRepository;
 import com.denlex.superoptimum.service.user.DistributorService;
@@ -17,5 +18,10 @@ public class DistributorServiceImpl implements DistributorService {
 	@Override
 	public Distributor save(Distributor distributor) {
 		return distributorRepository.save(distributor);
+	}
+
+	@Override
+	public Credentials findCredentialsByUsername(String username) {
+		return distributorRepository.findCredentialsByUsername(username);
 	}
 }

@@ -1,5 +1,6 @@
 package com.denlex.superoptimum.service.user;
 
+import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.user.Distributor;
 
 /**
@@ -7,4 +8,6 @@ import com.denlex.superoptimum.domain.user.Distributor;
  */
 public interface DistributorService {
 	Distributor save(Distributor distributor);
+
+	Credentials findCredentialsByUsername(String username);
 }

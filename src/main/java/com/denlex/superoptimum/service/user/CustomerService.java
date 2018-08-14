@@ -1,5 +1,6 @@
 package com.denlex.superoptimum.service.user;
 
+import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.user.Customer;
 
 /**
@@ -7,4 +8,6 @@ import com.denlex.superoptimum.domain.user.Customer;
  */
 public interface CustomerService {
 	Customer save(Customer customer);
+
+	Credentials findCredentialsByUsername(String username);
 }

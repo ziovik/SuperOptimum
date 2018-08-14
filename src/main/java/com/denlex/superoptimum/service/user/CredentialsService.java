@@ -10,4 +10,6 @@ public interface CredentialsService extends UserDetailsService {
 	Credentials save(Credentials credentials);
 
 	Credentials findByUsername(String username);
+
+	Credentials findCustomerByUsername(String username);
 }

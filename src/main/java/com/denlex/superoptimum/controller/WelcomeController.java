@@ -2,15 +2,12 @@ package com.denlex.superoptimum.controller;
 
 import com.denlex.superoptimum.domain.product.Category;
 import com.denlex.superoptimum.domain.user.Customer;
-import com.denlex.superoptimum.domain.user.User;
-import com.denlex.superoptimum.dto.UserKind;
 import com.denlex.superoptimum.service.product.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -18,48 +15,51 @@ import java.util.List;
  * Created by Shishkov A.V. on 10.08.18.
  */
 @Controller
-@RequestMapping(path = "")
 public class WelcomeController {
 
 	@Autowired
 	private CategoryService categoryService;
 
-	/*@ModelAttribute
+	@ModelAttribute
 	public void addAttributes(Model model) {
-		model.addAttribute("userKind", UserKind.DISTRIBUTOR);
-	}*/
+		model.addAttribute("userIndex", 0);
+	}
 
 	@GetMapping(path = {"", "/index"})
-	public String showIndexPage(Model model) {
-		User user = null;
-		model.addAttribute("userKind", user);
+	public String showIndexPage() {
 		return "index";
 	}
 
-	@GetMapping("/loading_c")
-	public String showWelcomeCustomerPage(Model model) {
-		model.addAttribute("userKind", UserKind.CUSTOMER);
-		return "loading_c";
+	@GetMapping("/customer/loading")
+	public String showWelcomeCustomerPage() {
+		return "customer/loading";
 	}
 
-	@GetMapping("/loading_d")
-	public String showWelcomeDistributorPage(Model model) {
-		model.addAttribute("userKind", UserKind.DISTRIBUTOR);
-		return "loading_d";
+	@GetMapping("/distributor/loading")
+	public String showWelcomeDistributorPage() {
+		return "distributor/loading";
 	}
 
-	@GetMapping("/login")
-	public String showLoginPage(Model model) {
-		User user = new Customer();
-		model.addAttribute("user", user);
-		return "login";
+	@GetMapping("/customer/login")
+	public String showCustomerLoginPage() {
+		return "customer/login";
 	}
 
-	@GetMapping("/optimum_beauty")
+	@GetMapping("/distributor/login")
+	public String showDistributorLoginPage() {
+		return "distributor/login";
+	}
+
+	@GetMapping("/customer/optimum_beauty")
 	public String showMainPage(@ModelAttribute("user") Customer user, Model model) {
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		return "optimum_beauty";
+		return "customer/optimum_beauty";
+	}
+
+	@GetMapping("/distributor/index_distributor")
+	public String showDistributorMainPage() {
+		return "distributor/index_distributor";
 	}
 
 }

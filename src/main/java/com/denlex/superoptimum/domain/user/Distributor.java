@@ -22,6 +22,9 @@ public class Distributor extends User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distributor", orphanRemoval = true)
 	private Set<Store> stores = new HashSet<>();
 
+	public Distributor() {
+	}
+
 	public Distributor(Credentials credentials, Contact contact, Address address, String orgn, String inn, String companyName) {
 		super(credentials, contact, address, orgn, inn);
 		this.companyName = companyName;

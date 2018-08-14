@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<link rel="stylesheet" type="text/css" href="../static/css/style_login.css" th:href="@{/css/style_login.css}"
+	<link rel="stylesheet" type="text/css" href="../../static/css/style_login.css" th:href="@{/css/style_login.css}"
 		  media="all">
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<h2 style="color: white; text-align: center;"></h2>
 	<h2 style="color: white; text-align: center;"></h2>
 	<h1>Вход</h1>
-	<form method="post" th:action="@{/login}">
+	<form method="post" th:action="@{/login_distributor}">
 		<input type="text" name="username" placeholder="логин..." required="required" autofocus="autofocus"/>
 		<input type="password" name="password" placeholder="пароль..." required="required"/>
 		<input type="submit" value="Вход" class="btn btn-primary btn-block btn-large"/>

@@ -38,26 +38,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-					.antMatchers("/", "/index", "/loading_c", "/loading_d").permitAll()
-					.antMatchers("/css/**", "/js/**", "/font/**", "/img/**").permitAll()
+					.antMatchers("/", "/index", "/customer/loading", "/distributor/loading")
+					.permitAll()
+
+					.antMatchers("/css/**", "/js/**", "/font/**", "/img/**")
+					.permitAll()
+
 					.anyRequest()
 					.authenticated()
-				.and()
-					.formLogin().successHandler(authenticationSuccessHandler)
-					.loginPage("/login")
-					.failureUrl("/login?error=true")
-					.permitAll()
 				.and()
 					.logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 					.invalidateHttpSession(true)
 					.logoutSuccessUrl("/index")
+					.deleteCookies("JSESSIONID")
 				.and()
 					.sessionManagement()
-					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-					/*.logoutSuccessHandler((request, response, authentication) -> {
-						response.sendRedirect("/index");
-					})*/;
+					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 	}
 
 	@Autowired
