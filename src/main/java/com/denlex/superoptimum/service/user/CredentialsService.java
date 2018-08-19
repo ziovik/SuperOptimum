@@ -1,6 +1,6 @@
 package com.denlex.superoptimum.service.user;
 
-import com.denlex.superoptimum.domain.Credentials;
+import com.denlex.superoptimum.domain.user.Credentials;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**

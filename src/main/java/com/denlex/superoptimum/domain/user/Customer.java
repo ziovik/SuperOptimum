@@ -1,6 +1,5 @@
 package com.denlex.superoptimum.domain.user;
 
-import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.product.Cart;
 import com.denlex.superoptimum.domain.product.Order;

@@ -1,6 +1,5 @@
 package com.denlex.superoptimum.domain.user;
 
-import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.product.Store;
 
@@ -21,6 +20,9 @@ public class Distributor extends User {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distributor", orphanRemoval = true)
 	private Set<Store> stores = new HashSet<>();
+
+	public Distributor() {
+	}
 
 	public Distributor(Credentials credentials, Contact contact, Address address, String orgn, String inn, String companyName) {
 		super(credentials, contact, address, orgn, inn);

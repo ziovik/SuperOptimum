@@ -1,7 +1,6 @@
 package com.denlex.superoptimum.domain.user;
 
 import com.denlex.superoptimum.domain.BaseEntity;
-import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.location.Address;
 
 import javax.persistence.Column;

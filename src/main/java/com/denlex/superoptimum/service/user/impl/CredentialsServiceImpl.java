@@ -1,7 +1,7 @@
 package com.denlex.superoptimum.service.user.impl;
 
-import com.denlex.superoptimum.domain.Credentials;
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.Credentials;
+import com.denlex.superoptimum.domain.user.Role;
 import com.denlex.superoptimum.repository.user.CredentialsRepository;
 import com.denlex.superoptimum.repository.user.RoleRepository;
 import com.denlex.superoptimum.service.user.CredentialsService;

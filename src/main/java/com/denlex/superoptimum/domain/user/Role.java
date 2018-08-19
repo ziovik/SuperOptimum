@@ -1,4 +1,7 @@
-package com.denlex.superoptimum.domain;
+package com.denlex.superoptimum.domain.user;
+
+import com.denlex.superoptimum.domain.BaseEntity;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +13,7 @@ import java.util.Set;
  * Created by Shishkov A.V. on 06.08.18.
  */
 @Entity
-public class Role extends BaseEntity {
+public class Role extends BaseEntity implements GrantedAuthority {
 	private String name;
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
@@ -41,5 +44,10 @@ public class Role extends BaseEntity {
 
 	public void addCredentials(Credentials credentials) {
 		this.getCredentials().add(credentials);
+	}
+
+	@Override
+	public String getAuthority() {
+		return name;
 	}
 }

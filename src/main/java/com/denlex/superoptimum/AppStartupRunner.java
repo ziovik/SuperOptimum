@@ -1,7 +1,6 @@
 package com.denlex.superoptimum;
 
-import com.denlex.superoptimum.domain.Credentials;
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.*;
 import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.location.City;
 import com.denlex.superoptimum.domain.location.Country;
@@ -9,9 +8,6 @@ import com.denlex.superoptimum.domain.location.Region;
 import com.denlex.superoptimum.domain.product.Category;
 import com.denlex.superoptimum.domain.product.Product;
 import com.denlex.superoptimum.domain.product.Subcategory;
-import com.denlex.superoptimum.domain.user.Contact;
-import com.denlex.superoptimum.domain.user.Customer;
-import com.denlex.superoptimum.domain.user.Distributor;
 import com.denlex.superoptimum.service.location.AddressService;
 import com.denlex.superoptimum.service.location.CityService;
 import com.denlex.superoptimum.service.location.CountryService;
@@ -209,23 +205,25 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillRoles() {
-		Role admin = new Role("ROLE_ADMIN");
-		Role user = new Role("ROLE_USER");
+		Role admin = new Role(RoleKind.ADMIN.name());
+		Role customer = new Role(RoleKind.CUSTOMER.name());
+		Role distributor = new Role(RoleKind.DISTRIBUTOR.name());
 		roleService.save(admin);
-		roleService.save(user);
+		roleService.save(customer);
+		roleService.save(distributor);
 	}
 
 	private void fillCustomers() {
-		Role user = roleService.findByName("ROLE_USER");
+		Role customerRole = roleService.findByName(RoleKind.CUSTOMER.name());
 
 		Credentials alexCredentials = new Credentials("alex", "alex");
-		user.addCredentials(alexCredentials);
-		alexCredentials.addRole(user);
+		customerRole.addCredentials(alexCredentials);
+		alexCredentials.addRole(customerRole);
 		alexCredentials = credentialsService.save(alexCredentials);
 
 		Credentials danielCredentials = new Credentials("daniel", "daniel");
-		user.addCredentials(danielCredentials);
-		danielCredentials.addRole(user);
+		customerRole.addCredentials(danielCredentials);
+		danielCredentials.addRole(customerRole);
 		danielCredentials = credentialsService.save(danielCredentials);
 
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
@@ -236,9 +234,9 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillDistributors() {
-		Role user = roleService.findByName("ROLE_USER");
+		Role distributorRole = roleService.findByName(RoleKind.DISTRIBUTOR.name());
 		Credentials appleCredentials = new Credentials("apple", "apple");
-		user.addCredentials(appleCredentials);
+		distributorRole.addCredentials(appleCredentials);
 		appleCredentials = credentialsService.save(appleCredentials);
 
 		City kursk = cityService.findByName("Курск");
