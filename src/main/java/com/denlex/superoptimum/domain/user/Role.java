@@ -4,20 +4,17 @@ import com.denlex.superoptimum.domain.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Transient;
 
 /**
  * Created by Shishkov A.V. on 06.08.18.
  */
 @Entity
 public class Role extends BaseEntity implements GrantedAuthority {
-	private String name;
+	@Transient
+	private final String prefix = "ROLE_";
 
-	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-	private Set<Credentials> credentials = new HashSet<>();
+	private String name;
 
 	public Role() {
 	}
@@ -34,20 +31,8 @@ public class Role extends BaseEntity implements GrantedAuthority {
 		this.name = name;
 	}
 
-	public Set<Credentials> getCredentials() {
-		return credentials;
-	}
-
-	public void setCredentials(Set<Credentials> credentials) {
-		this.credentials = credentials;
-	}
-
-	public void addCredentials(Credentials credentials) {
-		this.getCredentials().add(credentials);
-	}
-
 	@Override
 	public String getAuthority() {
-		return name;
+		return prefix + name;
 	}
 }

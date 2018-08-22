@@ -1,10 +1,10 @@
 package com.denlex.superoptimum.config;
 
 import com.denlex.superoptimum.domain.user.RoleKind;
-import com.denlex.superoptimum.service.user.CredentialsService;
-import com.denlex.superoptimum.service.user.security.CustomerCredentialsService;
-import com.denlex.superoptimum.service.user.security.DistributorCredentialsService;
+import com.denlex.superoptimum.service.user.impl.CustomerCredentialsService;
+import com.denlex.superoptimum.service.user.impl.DistributorCredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -22,11 +22,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-	@Autowired
-	private CredentialsService credentialsService;
 
 	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+	public static BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -36,21 +34,22 @@ public class SecurityConfiguration {
 	@Autowired
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
 
-	@Autowired
-	private CustomerCredentialsService customerCredentialsService;
-
-	@Autowired
-	private DistributorCredentialsService distributorCredentialsService;
 
 	@Configuration
 	@Order(1)
 	public static class CustomerSecurityConfiguration extends WebSecurityConfigurerAdapter {
+		@Autowired
+		@Qualifier("customerCredentialsService")
+		private CustomerCredentialsService customerCredentialsService;
+
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
+					.antMatcher("/customer/**")
 					.authorizeRequests()
-					.antMatchers("/customer/**").hasRole(RoleKind.CUSTOMER.name())
 					.antMatchers("/customer/loading").permitAll()
+					.antMatchers("/customer/**").hasRole(RoleKind.CUSTOMER.getValue())
+//					.anyRequest().hasRole(RoleKind.CUSTOMER.getValue())
 
 					.and()
 
@@ -61,22 +60,35 @@ public class SecurityConfiguration {
 
 					.and()
 
+					.csrf().disable()
+
 					.logout()
+					.logoutUrl("/customer/logout")
 					.logoutSuccessUrl("/")
 					.deleteCookies("JSESSIONID")
 					.permitAll();
+		}
+
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(customerCredentialsService).passwordEncoder(bCryptPasswordEncoder());
 		}
 	}
 
 	@Configuration
 	@Order(2)
 	public static class DistributorSecurityConfiguration extends WebSecurityConfigurerAdapter {
+		@Autowired
+		@Qualifier("distributorCredentialsService")
+		private DistributorCredentialsService distributorCredentialsService;
+
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
+					.antMatcher("/distributor/**")
 					.authorizeRequests()
-					.antMatchers("/distributor/**").hasRole(RoleKind.DISTRIBUTOR.name())
 					.antMatchers("/distributor/loading").permitAll()
+					.anyRequest().hasRole(RoleKind.DISTRIBUTOR.getValue())
 
 					.and()
 
@@ -87,10 +99,18 @@ public class SecurityConfiguration {
 
 					.and()
 
+					.csrf().disable()
+
 					.logout()
+					.logoutUrl("/distributor/logout")
 					.logoutSuccessUrl("/")
 					.deleteCookies("JSESSIONID")
 					.permitAll();
+		}
+
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(distributorCredentialsService).passwordEncoder(bCryptPasswordEncoder());
 		}
 	}
 
@@ -119,10 +139,4 @@ public class SecurityConfiguration {
 						response.sendRedirect("/index");
 					})*//*;
 	}*/
-
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customerCredentialsService).passwordEncoder(bCryptPasswordEncoder());
-		auth.userDetailsService(distributorCredentialsService).passwordEncoder(bCryptPasswordEncoder());
-	}
 }

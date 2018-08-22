@@ -1,6 +1,5 @@
 package com.denlex.superoptimum;
 
-import com.denlex.superoptimum.domain.user.*;
 import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.location.City;
 import com.denlex.superoptimum.domain.location.Country;
@@ -8,12 +7,19 @@ import com.denlex.superoptimum.domain.location.Region;
 import com.denlex.superoptimum.domain.product.Category;
 import com.denlex.superoptimum.domain.product.Product;
 import com.denlex.superoptimum.domain.product.Subcategory;
+import com.denlex.superoptimum.domain.user.*;
 import com.denlex.superoptimum.service.location.AddressService;
 import com.denlex.superoptimum.service.location.CityService;
 import com.denlex.superoptimum.service.location.CountryService;
 import com.denlex.superoptimum.service.product.CategoryService;
-import com.denlex.superoptimum.service.user.*;
+import com.denlex.superoptimum.service.user.ContactService;
+import com.denlex.superoptimum.service.user.CustomerService;
+import com.denlex.superoptimum.service.user.DistributorService;
+import com.denlex.superoptimum.service.user.RoleService;
+import com.denlex.superoptimum.service.user.impl.CustomerCredentialsService;
+import com.denlex.superoptimum.service.user.impl.DistributorCredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -29,7 +35,12 @@ public class AppStartupRunner implements ApplicationRunner {
 	private RoleService roleService;
 
 	@Autowired
-	private CredentialsService credentialsService;
+	@Qualifier(value = "customerCredentialsService")
+	private CustomerCredentialsService customerCredentialsService;
+
+	@Autowired
+	@Qualifier(value = "distributorCredentialsService")
+	private DistributorCredentialsService distributorCredentialsService;
 
 	@Autowired
 	private CustomerService customerService;
@@ -214,17 +225,17 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillCustomers() {
-		Role customerRole = roleService.findByName(RoleKind.CUSTOMER.name());
+		Role customerRole = roleService.findByName(RoleKind.CUSTOMER.getValue());
 
 		Credentials alexCredentials = new Credentials("alex", "alex");
-		customerRole.addCredentials(alexCredentials);
+//		customerRole.addCredentials(alexCredentials);
 		alexCredentials.addRole(customerRole);
-		alexCredentials = credentialsService.save(alexCredentials);
+		alexCredentials = customerCredentialsService.save(alexCredentials);
 
 		Credentials danielCredentials = new Credentials("daniel", "daniel");
-		customerRole.addCredentials(danielCredentials);
+//		customerRole.addCredentials(danielCredentials);
 		danielCredentials.addRole(customerRole);
-		danielCredentials = credentialsService.save(danielCredentials);
+		danielCredentials = customerCredentialsService.save(danielCredentials);
 
 		Customer alex = new Customer("Alex", alexCredentials, null, null, null, null);
 		customerService.save(alex);
@@ -234,10 +245,11 @@ public class AppStartupRunner implements ApplicationRunner {
 	}
 
 	private void fillDistributors() {
-		Role distributorRole = roleService.findByName(RoleKind.DISTRIBUTOR.name());
-		Credentials appleCredentials = new Credentials("apple", "apple");
-		distributorRole.addCredentials(appleCredentials);
-		appleCredentials = credentialsService.save(appleCredentials);
+		Role distributorRole = roleService.findByName(RoleKind.DISTRIBUTOR.getValue());
+		Credentials appleCredentials = new Credentials("alex", "alex");
+		appleCredentials.addRole(distributorRole);
+//		distributorRole.addCredentials(appleCredentials);
+		appleCredentials = distributorCredentialsService.save(appleCredentials);
 
 		City kursk = cityService.findByName("Курск");
 		Address appleAddress = addressService.save(new Address(kursk, "Ленина", "10", null, "305045"));

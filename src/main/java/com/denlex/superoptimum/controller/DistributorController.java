@@ -20,4 +20,9 @@ public class DistributorController {
 	public String showLoginPage() {
 		return "distributor/login";
 	}
+
+	@GetMapping("/main")
+	public String showMainPage() {
+		return "distributor/main";
+	}
 }

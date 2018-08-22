@@ -34,14 +34,19 @@ public class Credentials extends BaseEntity implements UserDetails {
 	@Transient
 	private String passwordConfirm;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	public Credentials() {
+		this.accountNonExpired = true;
+		this.accountNonLocked = true;
+		this.credentialsNonExpired = true;
+		this.enabled = true;
 	}
 
 	public Credentials(String username, String password) {
+		this();
 		this.username = username;
 		this.password = password;
 	}
