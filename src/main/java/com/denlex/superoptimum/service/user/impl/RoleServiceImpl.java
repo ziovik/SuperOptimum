@@ -1,6 +1,6 @@
 package com.denlex.superoptimum.service.user.impl;
 
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.Role;
 import com.denlex.superoptimum.repository.user.RoleRepository;
 import com.denlex.superoptimum.service.user.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

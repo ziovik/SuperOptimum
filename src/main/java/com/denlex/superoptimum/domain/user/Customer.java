@@ -1,7 +1,5 @@
 package com.denlex.superoptimum.domain.user;
 
-import com.denlex.superoptimum.domain.Credentials;
-import com.denlex.superoptimum.domain.location.Address;
 import com.denlex.superoptimum.domain.product.Cart;
 import com.denlex.superoptimum.domain.product.Order;
 
@@ -29,7 +27,7 @@ public class Customer extends User {
 	public Customer() {
 	}
 
-	public Customer(String name, Credentials credentials, Contact contact, Address address, String orgn, String inn) {
+	public Customer(String name, Credentials credentials, Contact contact, String orgn, String inn) {
 		super(credentials, contact, orgn, inn);
 		this.name = name;
 	}

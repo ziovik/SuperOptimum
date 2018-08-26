@@ -17,8 +17,8 @@ public class Store extends BaseEntity {
 	@OneToOne
 	private City city;
 
-	@OneToMany
-	private Set<Product> products = new HashSet<Product>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "store")
+	private Set<StoreItem> products = new HashSet<>();
 
 	@ManyToOne
 	private Distributor distributor;
@@ -31,9 +31,38 @@ public class Store extends BaseEntity {
 		this.distributor = distributor;
 	}
 
-	public Store(City city, Set<Product> products, Distributor distributor) {
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public Set<StoreItem> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<StoreItem> products) {
 		this.products = products;
+	}
+
+	public Distributor getDistributor() {
+		return distributor;
+	}
+
+	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
+	}
+
+	public void addProduct(StoreItem product) {
+		product.setStore(this);
+		this.products.add(product);
+	}
+
+	public void addProducts(StoreItem... products) {
+		for (StoreItem product : products) {
+			addProduct(product);
+		}
 	}
 }

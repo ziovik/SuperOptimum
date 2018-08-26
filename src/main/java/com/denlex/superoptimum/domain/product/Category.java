@@ -2,10 +2,7 @@ package com.denlex.superoptimum.domain.product;
 
 import com.denlex.superoptimum.domain.BaseEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +14,7 @@ public class Category extends BaseEntity {
 	@Column
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<Subcategory> subcategories = new HashSet<>();
 
 	public Category() {
@@ -46,5 +43,21 @@ public class Category extends BaseEntity {
 
 	public void setSubcategories(Set<Subcategory> subcategories) {
 		this.subcategories = subcategories;
+	}
+
+	public void addSubcategory(Subcategory subcategory) {
+		subcategory.setCategory(this);
+		this.getSubcategories().add(subcategory);
+	}
+
+	public void addSubcategories(Subcategory ... subcategories) {
+		for (Subcategory subcategory : subcategories) {
+			addSubcategory(subcategory);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 }

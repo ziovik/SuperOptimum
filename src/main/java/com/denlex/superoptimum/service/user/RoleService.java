@@ -1,6 +1,6 @@
 package com.denlex.superoptimum.service.user;
 
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.Role;
 
 /**
  * Created by Shishkov A.V. on 08.08.18.

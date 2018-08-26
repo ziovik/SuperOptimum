@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<!-- NAVIGATION -->
+<div id="navigation" th:fragment="navigation">
+	<!-- container -->
+	<div class="container">
+		<div id="responsive-nav">
+			<!-- category nav -->
+			<div class="category-nav">
+				<span class="category-header">Категории <i class="fa fa-list"></i></span>
+				<ul class="category-list">
+					<li th:each="category : ${categories}" class="dropdown side-dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="cosm">
+							<span th:text="${category.name}"></span>
+							<i class="fa fa-angle-right"></i>
+						</a>
+						<div class="custom-menu">
+							<div class="row">
+								<div class="col-md-4">
+									<ul class="list-links">
+										<li>
+											<h3 class="list-links-title">
+												<a href="#"
+												   th:href="@{/customer/products/category/{categoryId}(categoryId=${category.id})}">
+													<span th:text="${category.name}"></span>
+												</a>
+											</h3>
+										</li>
+										<li th:each="subcategory : ${category.subcategories}">
+											<a href="#"
+											   th:href="@{/customer/products/subcategory/{subcategoryId}(subcategoryId=${subcategory.id})}">
+												<span th:text="${subcategory.name}"></span>
+											</a>
+										</li>
+										<li style="width:300px;"><a href=""></a></li>
+									</ul>
+									<hr class="hidden-md hidden-lg">
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a href="../all_products.html">Все продукты</a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- menu nav -->
+			<div class="menu-nav">
+				<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+				<ul class="menu-list">
+
+					<li id="center1"><a href="ll_products.html" title="живой пойск"></a></li>
+				</ul>
+			</div>
+			<!-- menu nav -->
+		</div>
+	</div>
+	<!-- /container -->
+</div>
+<!-- /NAVIGATION -->
+
+</body>
+</html>

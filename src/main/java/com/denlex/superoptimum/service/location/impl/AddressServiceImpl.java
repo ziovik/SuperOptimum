@@ -5,13 +5,11 @@ import com.denlex.superoptimum.repository.location.AddressRepository;
 import com.denlex.superoptimum.service.location.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by Shishkov A.V. on 09.08.18.
+ * Created by Shishkov A.V. on 13.08.18.
  */
 @Service
-@Transactional
 public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressRepository addressRepository;

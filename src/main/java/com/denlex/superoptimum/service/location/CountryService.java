@@ -7,4 +7,6 @@ import com.denlex.superoptimum.domain.location.Country;
  */
 public interface CountryService {
 	Country save(Country country);
+
+	Country findByName(String name);
 }

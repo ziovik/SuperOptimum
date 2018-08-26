@@ -25,12 +25,6 @@ public class Product extends BaseEntity {
 	private String description;
 
 	@Column
-	private Integer minOrder;
-
-	@Column
-	private Integer maxOrder;
-
-	@Column
 	private LocalDate expiringDate;
 
 	@Column
@@ -39,15 +33,25 @@ public class Product extends BaseEntity {
 	public Product() {
 	}
 
-	public Product(String name, Subcategory subcategory, String manufacturer, String description, Integer minOrder, Integer maxOrder, LocalDate expiringDate, String keyword) {
-		this.name = name;
+	public Product(Subcategory subcategory, String name) {
 		this.subcategory = subcategory;
-		this.manufacturer = manufacturer;
-		this.description = description;
-		this.minOrder = minOrder;
-		this.maxOrder = maxOrder;
-		this.expiringDate = expiringDate;
+		this.name = name;
+	}
+
+	public Product(Subcategory subcategory, String name, String description) {
+		this(subcategory, name);
+		this.description =  description;
+	}
+
+	public Product(Subcategory subcategory, String name, String description, String keyword) {
+		this(subcategory, name, description);
 		this.keyword = keyword;
+	}
+
+	public Product(Subcategory subcategory, String name, String description, String keyword, String manufacturer, LocalDate expiringDate) {
+		this(subcategory, name, description, keyword);
+		this.manufacturer = manufacturer;
+		this.expiringDate = expiringDate;
 	}
 
 	public String getName() {
@@ -80,22 +84,6 @@ public class Product extends BaseEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Integer getMinOrder() {
-		return minOrder;
-	}
-
-	public void setMinOrder(Integer minOrder) {
-		this.minOrder = minOrder;
-	}
-
-	public Integer getMaxOrder() {
-		return maxOrder;
-	}
-
-	public void setMaxOrder(Integer maxOrder) {
-		this.maxOrder = maxOrder;
 	}
 
 	public LocalDate getExpiringDate() {

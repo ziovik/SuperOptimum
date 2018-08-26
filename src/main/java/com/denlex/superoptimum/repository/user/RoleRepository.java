@@ -1,6 +1,6 @@
 package com.denlex.superoptimum.repository.user;
 
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

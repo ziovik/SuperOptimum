@@ -20,4 +20,9 @@ public class CountryServiceImpl implements CountryService {
 	public Country save(Country country) {
 		return countryRepository.save(country);
 	}
+
+	@Override
+	public Country findByName(String name) {
+		return countryRepository.findByName(name);
+	}
 }

@@ -1,6 +1,5 @@
 package com.denlex.superoptimum.domain.user;
 
-import com.denlex.superoptimum.domain.Credentials;
 import com.denlex.superoptimum.domain.product.Store;
 
 import javax.persistence.CascadeType;
@@ -24,10 +23,9 @@ public class Distributor extends User {
 	public Distributor() {
 	}
 
-	public Distributor(Credentials credentials, Contact contact, String orgn, String inn, String companyName, Set<Store> stores) {
+	public Distributor(Credentials credentials, Contact contact, String orgn, String inn, String companyName) {
 		super(credentials, contact, orgn, inn);
 		this.companyName = companyName;
-		this.stores = stores;
 	}
 
 	public String getCompanyName() {
@@ -44,5 +42,10 @@ public class Distributor extends User {
 
 	public void setStores(Set<Store> stores) {
 		this.stores = stores;
+	}
+
+	public void addStore(Store store) {
+		store.setDistributor(this);
+		this.getStores().add(store);
 	}
 }

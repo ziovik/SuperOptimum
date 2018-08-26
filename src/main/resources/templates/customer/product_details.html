@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>OPTIMUM BEAUTY</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../../static/css/bootstrap.min.css"
+		  th:href="@{/css/bootstrap.min.css}"/>
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="../../static/css/slick.css" th:href="@{/css/slick.css}"/>
+	<link type="text/css" rel="stylesheet" href="../../static/css/slick-theme.css" th:href="@{/css/slick-theme.css}"/>
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="../../static/css/nouislider.min.css"
+		  th:href="@{/css/nouislider.min.css}"/>
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="../../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>
+	<link type="text/css" rel="stylesheet" href="../../static/css/table.css" th:href="@{/css/table.css}"/>
+	<link type="text/css" rel="stylesheet" href="../../static/css/checkout_style.css"
+		  th:href="@{/css/checkout_style.css}"/>
+
+	<!--table resp-->
+	<link rel="stylesheet" href="../../static/css/rwd-table.min.css?v=5.3.1">
+	<link rel="stylesheet" href="../static/css/docs.min.css?v=5.3.1">
+
+	<script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19870163-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+	</script>
+
+</head>
+
+<body>
+<!-- HEADER -->
+<header th:insert="customer/header.html :: header">
+</header>
+<!-- /HEADER -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" th:insert="customer/subcategory_breadcrumb.html :: subcategory_breadcrumb">
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- HOME -->
+<div id="home">
+	<!-- container -->
+	<div class="container" style="min-height: 600px;">
+		<!-- home wrap -->
+		<div class="home-wrap">
+			<!-- home slick -->
+			<div>
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div class="product-body">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-20%</span>
+							</div>
+							<h2 class="product-name" style="width: 600px; font-size: 20px;">
+								<span th:text="${storeItem.product.name}"></span>
+							</h2>
+							<h3 class="product-price">
+								<span th:text="${storeItem.price} + ' руб.'"></span>
+							</h3>
+							<div>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<a href="#">min order(s) / min</a>
+							</div>
+							<p><b>Доступно:</b>
+								<span th:text="${storeItem.balance}"></span>
+							</p>
+							<p>
+								<b>Поставщик:</b>
+								<span th:text="${storeItem.store.distributor.companyName}"></span>
+							</p>
+							<div class="product-btns">
+								<div class="qty-input">
+									<span class="text-uppercase">Количество: </span>
+									<input class="input" type="number" name="qty" value="1">
+									<input type="hidden" name="hidden_name" value="">
+									<input type="hidden" name="hidden_price" value="">
+								</div>
+								<button class="primary-btn add-to-cart" name="add_cart">
+									<i class="fa fa-shopping-cart"></i>
+									<a style="color: #fff;" href="">Добавить в корзину</a>
+								</button>
+								<div class="pull-right">
+									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Описание</a></li>
+
+								<li><a data-toggle="tab" href="#tab2">Производитель</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab1" class="tab-pane fade in active">
+									<span th:text="${storeItem.product.description}"></span>
+								</div>
+								<div id="tab2" class="tab-pane fade in">
+									<span th:text="${storeItem.product.manufacturer}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+</div>
+
+
+<!-- FOOTER -->
+<div th:insert="customer/footer.html :: footer"></div>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
+<script src="../../static/js/nouislider.min.js" th:src="@{/js/nouislider.min.js}"></script>
+<script src="../../static/js/jquery.zoom.min.js" th:src="@{/js/jquery.zoom.min.js}"></script>
+<script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+<script src="../../static/js/checkout.js" th:src="@{/js/checkout.js}"></script>
+<script src="../../static/js/rwd-table.js?v=5.3.1"></script>
+<script>
+    $(function () {
+        $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {
+            $('#bs-deps-toggle').children('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+        })
+    });
+</script>
+
+</body>
+
+</html>

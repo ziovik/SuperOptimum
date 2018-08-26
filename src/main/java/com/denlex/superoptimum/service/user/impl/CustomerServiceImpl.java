@@ -20,4 +20,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer save(Customer customer) {
 		return customerRepository.save(customer);
 	}
+
+	@Override
+	public Customer findByUsername(String username) {
+		return customerRepository.findByUsername(username);
+	}
 }

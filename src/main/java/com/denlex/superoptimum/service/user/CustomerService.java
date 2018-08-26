@@ -7,4 +7,6 @@ import com.denlex.superoptimum.domain.user.Customer;
  */
 public interface CustomerService {
 	Customer save(Customer customer);
+
+	Customer findByUsername(String username);
 }

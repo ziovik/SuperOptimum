@@ -1,15 +1,13 @@
 package com.denlex.superoptimum.service.user;
 
-import com.denlex.superoptimum.domain.Credentials;
-import java.util.List;
+import com.denlex.superoptimum.domain.user.Credentials;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Created by Shishkov A.V. on 08.08.18.
  */
-public interface CredentialsService {
+public interface CredentialsService extends UserDetailsService {
 	Credentials save(Credentials credentials);
 
-	Credentials findByLogin(String login);
-
-	List<Credentials> findByPassword(String password);
+	Credentials findByUsername(String username);
 }

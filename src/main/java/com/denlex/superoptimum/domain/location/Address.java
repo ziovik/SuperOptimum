@@ -2,7 +2,6 @@ package com.denlex.superoptimum.domain.location;
 
 import com.denlex.superoptimum.domain.BaseEntity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -13,17 +12,9 @@ import javax.persistence.ManyToOne;
 public class Address extends BaseEntity {
 	@ManyToOne
 	private City city;
-
-	@Column
 	private String street;
-
-	@Column
 	private String houseNumber;
-
-	@Column
 	private String flatNumber;
-
-	@Column
 	private String postCode;
 
 	public Address() {
@@ -34,6 +25,46 @@ public class Address extends BaseEntity {
 		this.street = street;
 		this.houseNumber = houseNumber;
 		this.flatNumber = flatNumber;
+		this.postCode = postCode;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public String getFlatNumber() {
+		return flatNumber;
+	}
+
+	public void setFlatNumber(String flatNumber) {
+		this.flatNumber = flatNumber;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 }
