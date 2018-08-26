@@ -1,8 +1,8 @@
 package com.denlex.superoptimum.dto.user;
 
-import com.denlex.superoptimum.domain.Credentials;
-import com.denlex.superoptimum.domain.Role;
+import com.denlex.superoptimum.domain.user.Credentials;
 import com.denlex.superoptimum.domain.user.Customer;
+import com.denlex.superoptimum.domain.user.Role;
 import com.denlex.superoptimum.service.location.CityService;
 import com.denlex.superoptimum.service.user.ContactService;
 import com.denlex.superoptimum.service.user.CredentialsService;
@@ -27,7 +27,7 @@ public class CustomerBuilder {
 
 	private String name;
 
-	private String login;
+	private String username;
 	private String password;
 
 	private String city;
@@ -50,10 +50,10 @@ public class CustomerBuilder {
 		return this;
 	}
 
-	public CustomerBuilder setLoginAndPassword(String login, String password) {
-		if (credentialsService.findByLogin(login) != null)
+	public CustomerBuilder setusernameAndPassword(String username, String password) {
+		if (credentialsService.findByUsername(username) != null)
 			throw new ArithmeticException(
-					"Пользователь с логином (" + login + ") уже существует");
+					"Пользователь с логином (" + username + ") уже существует");
 
 		Role user = roleService.findByName("user");
 
@@ -61,7 +61,7 @@ public class CustomerBuilder {
 			user = roleService.save(new Role("user"));
 		}
 
-		customer.setCredentials(credentialsService.save(new Credentials(login, password, user)));
+		customer.setCredentials(credentialsService.save(new Credentials(username, password)));
 		return this;
 	}
 
@@ -110,12 +110,12 @@ public class CustomerBuilder {
 		return this;
 	}
 
-	public CustomerBuilder buildLogin(String login) {
+	public CustomerBuilder buildusername(String username) {
 		if (customer.getCredentials() == null) {
 			customer.setCredentials(new Credentials());
 		}
 		Credentials credentials = customer.getCredentials();
-		credentials.setLogin(login);
+		credentials.setUsername(username);
 		return this;
 	}
 
