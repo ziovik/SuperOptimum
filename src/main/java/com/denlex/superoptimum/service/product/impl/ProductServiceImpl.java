@@ -21,8 +21,28 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAll();
 	}
 
+	/*@Override
+	public List<Product> findAllByCategoryAndRegion(@NotNull Long categoryId, @NotNull Long regionId) {
+		return productRepository.findAllByCategoryAndRegion(categoryId, regionId);
+	}
+
+	@Override
+	public List<Product> findAllBySubCategoryAndRegion(@NotNull Long subCategoryId, @NotNull Long regionId) {
+		return productRepository.findAllBySubCategoryAndRegion(subCategoryId, regionId);
+	}*/
+
 	@Override
 	public Product save(Product product) {
 		return productRepository.save(product);
+	}
+
+	@Override
+	public List<Product> findAllByCategory(Long categoryId) {
+		return productRepository.findAllByCategory(categoryId);
+	}
+
+	@Override
+	public List<Product> findAllBySubCategory(Long subcategoryId) {
+		return productRepository.findAllBySubCategory(subcategoryId);
 	}
 }

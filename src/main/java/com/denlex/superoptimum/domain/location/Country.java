@@ -42,4 +42,15 @@ public class Country extends BaseEntity {
 	public void setRegions(Set<Region> regions) {
 		this.regions = regions;
 	}
+
+	public void addRegion(Region region) {
+		region.setCountry(this);
+		this.getRegions().add(region);
+	}
+
+	public void addRegions(Region ... regions) {
+		for (Region region : regions) {
+			addRegion(region);
+		}
+	}
 }

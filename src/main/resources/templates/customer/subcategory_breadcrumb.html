@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div class="container" th:fragment="subcategory_breadcrumb">
+	<ul class="breadcrumb">
+		<li><a href="#" th:href="@{/customer/main}">Главная</a></li>
+		<li>
+			<a href="#"
+			   th:href="@{/customer/products/category/{categoryId}(categoryId=${subcategory.category.id})}">
+				<span th:text="${subcategory.category.name}"></span>
+			</a>
+		</li>
+		<li class="active">
+			<a href="#"
+			   th:href="@{/customer/products/subcategory/{subcategoryId}(subcategoryId=${subcategory.id})}">
+				<span th:text="${subcategory.name}"></span>
+			</a>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

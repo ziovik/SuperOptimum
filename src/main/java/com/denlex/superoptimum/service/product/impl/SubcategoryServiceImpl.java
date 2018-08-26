@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Shishkov A.V. on 07.08.18.
@@ -14,15 +15,21 @@ import java.util.List;
 @Service
 public class SubcategoryServiceImpl implements SubcategoryService {
 	@Autowired
-	private SubcategoryRepository subcategoryRepository;
+	private SubcategoryRepository repository;
 
 	@Override
 	public List<Subcategory> findAll() {
-		return subcategoryRepository.findAll();
+		return repository.findAll();
+	}
+
+	@Override
+	public Subcategory findById(Long id) {
+		Optional<Subcategory> result = repository.findById(id);
+		return result.isPresent() ? result.get() : null;
 	}
 
 	@Override
 	public Subcategory save(Subcategory subcategory) {
-		return subcategoryRepository.save(subcategory);
+		return repository.save(subcategory);
 	}
 }

@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
  * Created by Shishkov A.V. on 07.08.18.
  */
 @Entity
-public class ProductItem extends BaseEntity {
+public class CartItem extends BaseEntity {
 	@OneToOne
 	private Product product;
 
@@ -21,10 +21,19 @@ public class ProductItem extends BaseEntity {
 	@ManyToOne
 	private Cart cart;
 
-	public ProductItem() {
+	public CartItem() {
 	}
 
-	public ProductItem(Product product, Double quantity, Cart cart) {
+	public CartItem(Product product) {
+		this.product = product;
+	}
+
+	public CartItem(Product product, Double quantity) {
+		this.product = product;
+		this.quantity = quantity;
+	}
+
+	public CartItem(Product product, Double quantity, Cart cart) {
 		this.product = product;
 		this.quantity = quantity;
 		this.cart = cart;

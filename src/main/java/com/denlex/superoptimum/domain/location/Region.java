@@ -66,4 +66,15 @@ public class Region extends BaseEntity {
 	public void setCities(Set<City> cities) {
 		this.cities = cities;
 	}
+
+	public void addCity(City city) {
+		city.setRegion(this);
+		this.getCities().add(city);
+	}
+
+	public void addCities(City ... cities) {
+		for (City city : cities) {
+			addCity(city);
+		}
+	}
 }

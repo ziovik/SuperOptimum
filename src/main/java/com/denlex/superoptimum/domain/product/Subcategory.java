@@ -60,4 +60,15 @@ public class Subcategory extends BaseEntity {
 		product.setSubcategory(this);
 		this.getProducts().add(product);
 	}
+
+	public void addProducts(Product... products) {
+		for (Product product : products) {
+			addProduct(product);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

@@ -19,7 +19,6 @@ public abstract class CredentialsServiceBase implements CredentialsService, User
 	@Override
 	public Credentials save(Credentials credentials) {
 		credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
-//		credentials.setPassword(credentials.getPassword());
 		return credentialsRepository.save(credentials);
 	}
 }

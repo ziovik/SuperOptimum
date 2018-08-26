@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Shishkov A.V. on 07.08.18.
@@ -19,12 +20,26 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository categoryRepository;
 
 	@Override
-	public Category save(Category category) {
-		return categoryRepository.save(category);
+	public List<Category> findAll() {
+		return categoryRepository.findAll();
 	}
 
 	@Override
-	public List<Category> findAll() {
-		return categoryRepository.findAll();
+	public Category findById(Long id) {
+		Optional<Category> result = categoryRepository.findById(id);
+
+		if (result == null || !result.isPresent()) return null;
+
+		return result.get();
+	}
+
+	@Override
+	public Category findByName(String name) {
+		return categoryRepository.findByName(name);
+	}
+
+	@Override
+	public Category save(Category category) {
+		return categoryRepository.save(category);
 	}
 }

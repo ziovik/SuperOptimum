@@ -9,5 +9,10 @@ import java.util.List;
  */
 public interface ProductService {
 	List<Product> findAll();
+
+	List<Product> findAllByCategory(Long categoryId);
+
+	List<Product> findAllBySubCategory(Long subcategoryId);
+
 	Product save(Product product);
 }

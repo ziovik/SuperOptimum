@@ -13,7 +13,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+	<link type="text/css" rel="stylesheet" href="../../static/css/bootstrap.min.css"
+		  th:href="@{/css/bootstrap.min.css}"/>
 
 	<!-- Slick -->
 	<link type="text/css" rel="stylesheet" href="../../static/css/slick.css" th:href="@{/css/slick.css}"/>
@@ -53,11 +54,15 @@
 </head>
 
 <body>
-
+<!-- HEADER -->
 <header th:insert="customer/header.html :: header">
 </header>
+<!-- /HEADER -->
 
+<!-- NAVIGATION -->
 <div th:insert="customer/navigation.html :: navigation"></div>
+<!-- /NAVIGATION -->
+
 <!-- HOME -->
 <div id="home">
 	<!-- container -->

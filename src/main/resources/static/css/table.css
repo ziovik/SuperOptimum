@@ -1,18 +1,23 @@
 table {
-	font-family: arial,sans-serif;
-	font-size:14px;
-	color:purple;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+	color: purple;
 	border: solid 1px #666;
 	border-collapse: collapse;
 }
+
 table th {
-    border: solid 1px #025B85;
+	border: solid 1px #025B85;
 	padding: 10px;
 	background-color: purple;
-    color:white;
+	color: white;
+	vertical-align: center;
+	text-align: center;
 }
+
 table td {
 	padding: 10px;
-    border: solid 1px #666;
-	background-color: #ffffff;
+	border: solid 1px #666;
+	background-color: white;
+	color: #400040;
 }

@@ -24,7 +24,7 @@ public class Order extends BaseEntity {
 	private OrderStatus status;
 
 	@OneToMany
-	private Set<ProductItem> productItems = new HashSet<>();
+	private Set<CartItem> cartItems = new HashSet<>();
 
 	public Order() {
 	}
@@ -59,11 +59,11 @@ public class Order extends BaseEntity {
 		this.status = status;
 	}
 
-	public Set<ProductItem> getProductItems() {
-		return productItems;
+	public Set<CartItem> getCartItems() {
+		return cartItems;
 	}
 
-	public void setProductItems(Set<ProductItem> productItems) {
-		this.productItems = productItems;
+	public void setCartItems(Set<CartItem> cartItems) {
+		this.cartItems = cartItems;
 	}
 }
